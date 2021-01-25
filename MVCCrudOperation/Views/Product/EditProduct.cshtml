@@ -1,0 +1,27 @@
+﻿@model MVCCrudOperation.Models.ProductModel
+@{
+    ViewBag.Title = "EditProduct";
+}
+
+<h2>EditProduct</h2>
+<form method="post">
+    <div>
+        <span>Product Name :</span>
+        <input type="hidden" value="@Model.Product_Id" name="Product_Id"/>
+        <input type="text" value="@Model.Product_Name" name="Product_Name" required placeholder="Product Name" />
+    </div>
+    <div style="display:-webkit-inline-box">
+        <span>category Name :</span>
+        <select class="form-control" id="Category_Id" name="Category_Id">
+            <option value="@Model.Category_Id">@Model.Category_Name</option>
+            @for (int i = 0; i < @Model.dtcateg.Rows.Count; i++)
+            {
+                <option value="@Model.dtcateg.Rows[i][0]">@Model.dtcateg.Rows[i][1]</option>
+            }
+        </select>
+    </div>
+    <div style="display:flex">
+        <button type="submit" class="btn btn-success">Save</button>&nbsp;
+        <a href="@Url.Action("Index","Product")" class="btn btn-primary pull-right">Back</a>
+    </div>
+</form>

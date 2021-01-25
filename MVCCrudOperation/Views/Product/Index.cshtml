@@ -1,0 +1,59 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    jQuery(document).ready(function ($) {
+        $('#tblProduct').DataTable();
+    });
+</script>
+<h2>Index</h2>
+<div>
+    <a href="@Url.Action("AddProduct","Product")" class="btn btn-primary pull-right">Add Product</a>
+</div>
+<table id="tblProduct" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Category Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @for (int i = 0; i <Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][4]</td>
+            <td><a href="@Url.Action("EditProduct","Product",new {@id=@Model.Rows[i][0] })">Edit</a>
+            <a href="@Url.Action("DeleteProduct","Product",new {@id=@Model.Rows[i][0] })">Delete</a></td>
+        </tr>
+    }</tbody>
+</table>
+@{ 
+    double totalpage = ViewBag.page;
+    for (int i = 1; i <= totalpage; i++)
+    {
+        <ul class="pagination">
+            @if (i == ViewBag.pagerow)
+            {
+                <li class="active">
+                    @Html.ActionLink(i.ToString(), "index", "Product", new { pagerow = @i, Record=10 }, null)
+                   
+                </li>
+            }
+            else
+            {
+                <li>
+                    @Html.ActionLink(i.ToString(), "index", "Product", new { pagerow = @i, Record = 10 }, null)
+                </li>
+            }
+
+        </ul>
+
+    }
+}
+

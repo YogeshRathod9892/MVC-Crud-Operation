@@ -1,0 +1,17 @@
+﻿ 
+@{
+    ViewBag.Title = "AddCategory";
+}
+
+<h2>AddCategory</h2>
+<form method="post">
+    <div class="item form-group">
+        <span>Category Name : </span>
+        <input type="text" name="Category_Name" required placeholder="Category Name" />
+    </div>
+    <div style="display:flex">
+        <button type="submit" class="btn btn-success">Save</button>&nbsp;
+        <a href="@Url.Action("Index","Category")" class="btn btn-primary pull-right">Back</a>
+    </div>
+</form>
+

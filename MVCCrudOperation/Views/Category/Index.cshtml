@@ -1,0 +1,31 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Index";
+}
+<script>
+    jQuery(document).ready(function ($) {
+        $('#tblCategory').DataTable();
+    });
+</script>
+<h2>Index</h2>
+
+<div>
+    <a href="@Url.Action("AddCategory","Category")" class="btn btn-primary pull-right">Add Category</a>
+</div>
+<table id="tblCategory" class="table table-bordered table-striped">
+    <tr>
+        <th>Category Id</th>
+        <th>Category Name</th>
+        <th>Action</th>
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td><a href="@Url.Action("EditCategory","Category",new {@id=@Model.Rows[i][0] } )">Edit</a>&nbsp;
+             <a href="@Url.Action("DeleteCategory","Category",new {@id=Model.Rows[i][0] })">Delete</a></td>
+        </tr>
+    }
+</table>
+

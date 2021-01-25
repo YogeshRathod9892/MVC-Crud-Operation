@@ -1,0 +1,18 @@
+﻿@model MVCCrudOperation.Models.CategoryModel   
+@{
+    ViewBag.Title = "EditCategory";
+}
+
+<h2>EditCategory</h2>
+<form method="post">
+    <div>
+        <span>Category Name</span>
+        <input type="hidden" value="@Model.Category_Id" name="Category_Id"  />
+        <input type="text" value="@Model.Category_Name" name="Category_Name" required placeholder="Category Name"/>
+    </div>
+    <div style="display:flex">
+        <button type="submit" class="btn btn-success">Save</button>&nbsp;
+        <a href="@Url.Action("Index","Category")" class="btn btn-primary pull-right">Back</a>
+    </div>
+</form>
+
